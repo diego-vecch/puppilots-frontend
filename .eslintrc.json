@@ -1,3 +1,14 @@
 {
-  "extends": "next/core-web-vitals"
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "extends": [
+    "./node_modules/ts-standard/eslintrc.json",
+    "next/core-web-vitals"
+  ],
+  "rules": {
+    "react/props-types": "off",
+    "react/react-in-js-scope": "off",
+    "@typescript-eslint/consistent-type-definitions": "off"
+  }
 }
