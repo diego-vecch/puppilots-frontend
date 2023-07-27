@@ -10,6 +10,19 @@ module.exports = {
     current: 'currentColor',
     extend: {
       colors: {
+        pup: {
+          container: '#11101A',
+          menu: '#242328',
+          card: '#22212E',
+          purple1: '#A566EB',
+          purple2: '#8F00FF',
+          blue: '#64B4F9',
+          text_w_1: '#FCFCFC',
+          text_w_2: '#A9A8A8',
+          text_b_1: '#1E0F7B',
+          button_w: '#8874A0',
+          svg_2: '#846358'
+        },
         // light mode
         tremor: {
           brand: {
