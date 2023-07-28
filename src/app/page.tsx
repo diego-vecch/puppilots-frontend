@@ -1,6 +1,7 @@
 import FileCard from './components/Card'
 import { Grid, Col, Card, Text, Metric } from '@tremor/react'
 import Header from './components/Header'
+import Footer from './components/Footer'
 export default function Home (): JSX.Element {
   return (
     <main className='flex h-screen w-screen flex-col items-center justify-between bg-pup-container'>
@@ -30,6 +31,7 @@ export default function Home (): JSX.Element {
           <FileCard />
         </Grid>
       </section>
+      <Footer />
     </main>
   )
 }
