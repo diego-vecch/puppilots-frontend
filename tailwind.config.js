@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-
+const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
   content: [
     './src/**/*.{js,ts,jsx,tsx}',
@@ -7,6 +7,10 @@ module.exports = {
   ],
   theme: {
     transparent: 'transparent',
+    screens: {
+      xs: '450px',
+      ...defaultTheme.screens
+    },
     current: 'currentColor',
     extend: {
       fontFamily: {
