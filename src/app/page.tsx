@@ -4,14 +4,14 @@ import { Button } from '@tremor/react'
 import oneDog from '../../public/canwalk.webp'
 import twoDog from '../../public/cristian-castillo-73pyV0JJOmE-unsplash.jpg'
 import Image from 'next/image'
-import Header from './components/Header'
+import Menu from '../components/Menu'
 import Footer from './components/Footer'
 import { MenuResponsive } from './components/MenuResponsive'
 
 export default function Home (): JSX.Element {
   return (
     <main className='flex h-screen w-screen flex-col items-center justify-between bg-pup-container'>
-      <Header />
+      <Menu />
       <section className='rounded-md overflow-hidden w-3/4 relative md:h-full flex flex-col gap-20'>
         <div className='flex flex-col justify-center items-center'>
           <h1 className='text-pup-text_w_1 font-extrabold text-2xl tracking-wide'>Te ofrecemos nuestro servicio de paseos para perros</h1>

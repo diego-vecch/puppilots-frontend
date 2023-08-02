@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import Link from 'next/link'
 import AncoreMenu from './AncoreMenu'
 import ButtonWhite from './ButtonWhite'
 import { LogoCancelMenu, LogoMenu } from './LogoMenu'
@@ -29,7 +30,10 @@ export const MenuResponsive: React.FC = () => {
                 <ButtonWhite>Iniciar Sesión</ButtonWhite>
               </li>
               <li>
-                <ButtonWhite>Registro</ButtonWhite>
+                <ButtonWhite><Link href='/register-client'>Registro usuario</Link>s</ButtonWhite>
+              </li>
+              <li>
+                <ButtonWhite>Registro de paseadores</ButtonWhite>
               </li>
             </ol>
           </nav>
