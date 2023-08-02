@@ -11,7 +11,7 @@ export default function registerclient (): JSX.Element {
     <div className='bg-pup-container h-screen flex justify-center place-items-center'>
       <div className='w-9/12 h-4/5 max-w-5xl max-h-[670px] flex border-indigo-700 border-opacity-60 rounded-2xl border-2'>
         <div className='h-full relative rounded-l-2xl'>
-          <Image className='object-cover h-full w-ful rounded-l-2xl' src='/../public/dog-forms.jpeg' alt='Imagen de un labrador. Imagen obtenida de Unplash. Autor:taylor-kopel' width={1000} height={600} />
+          <Image className='object-cover h-full w-ful rounded-l-2xl' src='/dog-forms.jpeg' alt='Imagen de un labrador. Imagen obtenida de Unplash. Autor:taylor-kopel' width={1000} height={600} />
           <div
             className='rounded-l-2xl absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-indigo-900 bg-gradient-to-b from-pup-container from-10% via-indigo-950 via-15%% to-indigo-900 to-95%% bg-fixed opacity-30'
           />
