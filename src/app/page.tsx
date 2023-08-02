@@ -5,8 +5,7 @@ import oneDog from '../../public/canwalk.webp'
 import twoDog from '../../public/cristian-castillo-73pyV0JJOmE-unsplash.jpg'
 import Image from 'next/image'
 import Menu from '../components/Menu'
-import Footer from './components/Footer'
-import { MenuResponsive } from './components/MenuResponsive'
+import Footer from '../components/Footer'
 
 export default function Home (): JSX.Element {
   return (
