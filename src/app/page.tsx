@@ -5,6 +5,8 @@ import oneDog from '../../public/canwalk.webp'
 import twoDog from '../../public/cristian-castillo-73pyV0JJOmE-unsplash.jpg'
 import Image from 'next/image'
 import Header from './components/Header'
+import Footer from './components/Footer'
+import { MenuResponsive } from './components/MenuResponsive'
 
 export default function Home (): JSX.Element {
   return (
@@ -76,8 +78,8 @@ export default function Home (): JSX.Element {
             <Image src={oneDog} alt='oneDog' width={300} height={300} />
           </div>
         </div>
-
       </section>
+      <Footer />
     </main>
   )
 }

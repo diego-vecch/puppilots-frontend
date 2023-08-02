@@ -1,8 +1,6 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { breeSerif, lato, openSans } from './fonts'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +14,7 @@ export default function RootLayout ({
 }): JSX.Element {
   return (
     <html lang='en'>
-      <body className={inter.className}>{children}</body>
+      <body className={`${lato.variable} font-lato text-white ${breeSerif.variable} font-bree_serif text-white ${openSans.variable} font-open_sans text-white`}>{children}</body>
     </html>
   )
 }
