@@ -13,7 +13,7 @@ export const MenuResponsive: React.FC = () => {
   return (
     <div>
       {viewMenu && (
-        <div className='md:hidden fixed bg-pup-container bg-gradient-to-b from-pup-container via-[#110f1e] via-80% to-[#131328] w-6/12 sm:w-5/12 h-full bottom-0 right-0 z-20'>
+        <div className='md:hidden fixed bg-pup-container bg-gradient-to-b from-pup-container via-[#110f1e] via-80% to-[#131328] w-6/12 sm:w-5/12 h-full bottom-0 right-0 z-30'>
           <h4 className='text-pup-text_w_2 text-center pt-4 pb-2'>Menú</h4>
           <nav className='w-full'>
             <ol className='[&>li]:px-2 [&>li]:w-full w-full py-1 [&>li]:justify-center [&>li]:flex [&>li]:py-1'>
