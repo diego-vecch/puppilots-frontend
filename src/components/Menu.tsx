@@ -24,7 +24,7 @@ export default function Menu (): JSX.Element {
             </ol>
           </div>
           <div className='hidden md:flex w-full justify-end'>
-            <div className='px-2 py-1'><ButtonWhite><Link href='/dashboard'>Iniciar Sesión</Link></ButtonWhite></div>
+            <div className='px-2 py-1'><ButtonWhite><Link href='/login'>Iniciar Sesión</Link></ButtonWhite></div>
             <div className='px-1 py-1'><ButtonWhite><Link href='/register'>Registro</Link></ButtonWhite></div>
           </div>
         </nav>
