@@ -8,8 +8,8 @@ export default function Menu (): JSX.Element {
   return (
     <div className='w-full'>
       <header className='w-full flex justify-center'>
-        <nav className='text-pup-text_w_1 flex w-full justify-center md:justify-between px-1 pt-5 pb-4 md:py-3 max-w-[1400px]'>
-          <div className='pl-1'>
+        <nav className='text-pup-text_w_1 flex w-full justify-center md:justify-between pt-5 pb-4 md:py-3 max-w-[1400px]'>
+          <div className='pl-1 md:w-full'>
             <LogoApp />
           </div>
           <div className='hidden md:flex'>
@@ -23,10 +23,9 @@ export default function Menu (): JSX.Element {
               <li><AncoreMenu>Contacto</AncoreMenu></li>
             </ol>
           </div>
-          <div className='hidden md:flex'>
+          <div className='hidden md:flex w-full justify-end'>
             <div className='px-2 py-1'><ButtonWhite><Link href='/login'>Iniciar Sesión</Link></ButtonWhite></div>
-            <div className='px-1 py-1'><ButtonWhite><Link href='/register-client'>Registro usuario</Link></ButtonWhite></div>
-            <div className='px-1 py-1'><ButtonWhite><Link href=''>Registro de paseadores</Link></ButtonWhite></div>
+            <div className='px-1 py-1'><ButtonWhite><Link href='/register'>Registro</Link></ButtonWhite></div>
           </div>
         </nav>
       </header>
