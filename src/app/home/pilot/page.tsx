@@ -12,10 +12,8 @@ export default function HomePilot (): JSX.Element {
         <section className='border-2 border-pup-purple2 w-full max-w-[1400px] h-full flex'>
           <div className='w-3/12'>
             <div className='px-2 pt-2'>
-              <CardUserHome
-                name='Usuario 1'
-                mail='user1@gmail.com'
-              />
+              <DiaryUser />
+
             </div>
             <div>card para noticias?</div>
           </div>
@@ -24,7 +22,10 @@ export default function HomePilot (): JSX.Element {
             <div className='h-16'>card para un mapa?</div>
           </div>
           <div className='w-3/12 px-2 pt-2'>
-            <DiaryUser />
+            <CardUserHome
+              name='Usuario 1'
+              mail='user1@gmail.com'
+            />
           </div>
         </section>
       </div>

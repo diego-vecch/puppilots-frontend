@@ -23,6 +23,7 @@ module.exports = {
           container: '#11101A',
           menu: '#242328',
           card: '#22212E',
+          card2: '#211b48',
           input: '#e1dfec',
           purple1: '#A566EB',
           purple2: '#8F00FF',
