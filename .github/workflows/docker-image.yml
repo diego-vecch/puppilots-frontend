@@ -2,10 +2,10 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "develop", "feature/dockerhub-push-image" ]
   pull_request:
     branches: [ "develop" ]
-
+    
 jobs:
   build:
     runs-on: ubuntu-latest
