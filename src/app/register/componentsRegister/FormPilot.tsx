@@ -1,7 +1,6 @@
 import { LabelForm } from '@/components/LabelForm'
 import { CustomInput } from '@/components/CustomInput'
 import { useEffect, useState, useCallback, useContext } from 'react'
-import { data } from 'autoprefixer'
 import { redirect } from 'next/navigation'
 import { ContextUser } from '@/context/ContextUser'
 import { USER, JWT } from '@/types/userSession'
@@ -184,7 +183,7 @@ export const FormRegisterPilot: React.FC = () => {
 
   const send = (): void => {
     setSendData(true)
-    console.log(infoPilot, data)
+    console.log(infoPilot)
   }
 
   useEffect(() => {
