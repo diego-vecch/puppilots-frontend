@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^13.4.12",
     "@tremor/react": "^3.4.1",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
