@@ -2,12 +2,15 @@
 import { createContext, useState } from 'react'
 
 type Data = {
-  email: string
-  password: string
+  isLogged: boolean
+  mail: string
 }
 
 export const ContextUser = createContext({
-  infoUser: {},
+  infoUser: {
+    isLogged: false,
+    mail: ''
+  },
   setInfoUser: (arg: Data): void => {}
 })
 
@@ -17,8 +20,8 @@ type propContext = {
 
 export const ProviderInfoUser: React.FC<propContext> = ({ children }) => {
   const [infoUser, setInfoUser] = useState<Data>({
-    email: '',
-    password: ''
+    isLogged: false,
+    mail: ''
   })
 
   return (<ContextUser.Provider value={{ infoUser, setInfoUser }}>{children}</ContextUser.Provider>)
