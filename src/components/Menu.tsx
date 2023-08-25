@@ -1,17 +1,31 @@
 import AncoreMenu from './AncoreMenu'
 import ButtonWhite from './ButtonWhite'
 import { LogoApp } from './LogoApp'
+import { redirect } from 'next/navigation'
 import { MenuResponsive } from './MenuResponsive'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 export default function Menu (): JSX.Element {
   const [logged, setLogged] = useState(false)
+  const [outSession, setOutSession] = useState(false)
+  const [nameUser, setNameUser] = useState(typeof window !== 'undefined' && window.sessionStorage.getItem('email'))
+  const closeSession = useCallback((): void => {
+    window.sessionStorage.clear()
+    setOutSession(true)
+  }, [])
   useEffect(() => {
     if (window.sessionStorage.getItem('isLogged') === 'true') {
       setLogged(true)
     }
   }, [])
+  useEffect(() => { setNameUser(typeof window !== 'undefined' && window.sessionStorage.getItem('email')) }, [])
+  useEffect(() => {
+    if (outSession) {
+      closeSession()
+      redirect('/')
+    }
+  }, [closeSession, outSession])
 
   return (
     <div className='w-full'>
@@ -39,12 +53,9 @@ export default function Menu (): JSX.Element {
           )}
           {logged && (
             <div className='hidden md:flex w-full justify-end'>
-              <div className='px-2 py-1'><ButtonWhite><Link href='/login'>{window.sessionStorage.getItem('email')}</Link></ButtonWhite></div>
+              <div className='px-2 py-1'><ButtonWhite><Link href='/login'>{nameUser}</Link></ButtonWhite></div>
               <div className='px-2 py-1'>
-                <button onClick={() => {
-                  window.sessionStorage.clear()
-                }}
-                ><Link href='/'>Cerrar Sesión</Link>
+                <button onClick={closeSession}>Cerrar Sesión
                 </button>
               </div>
             </div>
