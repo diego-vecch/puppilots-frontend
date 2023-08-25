@@ -126,18 +126,17 @@ export const Form: React.FC = () => {
   }, [sendData, password, email])
 
   useEffect(() => {
-    const linkUserVerifyToken = process.env.NEXT_PUBLIC_USER_VERIFY_TOKEN as string
+    const linkUserVerifyToken = process.env.NEXT_PUBLIC_USER_VERIFY as string
     if (registerOk) {
       const getInfoUserFromToken = async (): Promise<USER> => {
         sessionStorage.setItem('isLogged', 'true')
         return await fetch(`${linkUserVerifyToken}`, {
           method: 'POST',
           headers: {
+            Authorization: `Bearer ${token}`,
             'content-type': 'application/json;charset=UTF-8'
           },
-          body: JSON.stringify({
-            token
-          })
+          body: JSON.stringify({})
         }).then(
           async (res) => {
             const data = await res.json()
@@ -146,7 +145,6 @@ export const Form: React.FC = () => {
         )
       }
       void getInfoUserFromToken().then(res => {
-        console.log(res.email)
         sessionStorage.setItem('email', res.email)
         sessionStorage.setItem('isLogged', 'true')
         setInfoUser({

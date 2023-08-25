@@ -153,9 +153,7 @@ export const FormRegisterPilot: React.FC = () => {
         four: ''
       }
     )
-
-    console.log(infoPilot)
-  }, [infoPilot])
+  }, [])
 
   const nextPartFour = useCallback((): void => {
     setIntervalAdvance({
@@ -183,7 +181,6 @@ export const FormRegisterPilot: React.FC = () => {
 
   const send = (): void => {
     setSendData(true)
-    console.log(infoPilot)
   }
 
   useEffect(() => {
@@ -245,17 +242,16 @@ export const FormRegisterPilot: React.FC = () => {
     }
   }, [sendData, infoPilot])
   useEffect(() => {
-    const linkUserVerifyToken = process.env.NEXT_PUBLIC_USER_VERIFY_TOKEN as string
+    const linkUserVerifyToken = process.env.NEXT_PUBLIC_USER_VERIFY as string
     if (registerOk) {
       const getInfoUserFromToken = async (): Promise<USER> => {
         return await fetch(`${linkUserVerifyToken}`, {
           method: 'POST',
           headers: {
+            Authorization: `Bearer ${token}`,
             'content-type': 'application/json;charset=UTF-8'
           },
-          body: JSON.stringify({
-            token
-          })
+          body: JSON.stringify({})
         }).then(
           async (res) => {
             const data = await res.json()
