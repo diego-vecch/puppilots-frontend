@@ -1,4 +1,4 @@
-import { Bree_Serif, Open_Sans, Lato } from "next/font/google"
+import { Bree_Serif, Open_Sans, Lato } from 'next/font/google'
 
 export const breeSerif = Bree_Serif({
   subsets: ['latin'],
