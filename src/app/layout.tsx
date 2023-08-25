@@ -2,6 +2,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { breeSerif, lato, openSans } from './fonts'
 import { ProviderInfoUser } from '@/context/ContextUser'
+import { ProviderInfoOfUser } from '@/context/ContexUserInfo'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,7 +16,12 @@ export default function RootLayout ({
 }): JSX.Element {
   return (
     <html lang='en'>
-      <body className={`${lato.variable} font-lato text-white ${breeSerif.variable} font-bree_serif text-white ${openSans.variable} font-open_sans text-white`}><ProviderInfoUser>{children}</ProviderInfoUser></body>
+      <body className={`${lato.variable} font-lato text-white ${breeSerif.variable} font-bree_serif text-white ${openSans.variable} font-open_sans text-white`}>
+        <ProviderInfoUser>
+          <ProviderInfoOfUser>{children}
+          </ProviderInfoOfUser>
+        </ProviderInfoUser>
+      </body>
     </html>
   )
 }
