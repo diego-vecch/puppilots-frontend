@@ -1,12 +1,10 @@
 import { LabelForm } from '@/components/LabelForm'
 import { CustomInput } from '@/components/CustomInput'
-import { useEffect, useState, useCallback, useContext } from 'react'
-import { redirect } from 'next/navigation'
-import { ContextUser } from '@/context/ContextUser'
-import { USER, JWT } from '@/types/userSession'
+import { useEffect, useState, useCallback } from 'react'
+import { JWT } from '@/types/userSession'
+import { useVerify } from '@/hooks/useVerify'
 
 export const FormRegisterPilot: React.FC = () => {
-  const { setInfoUser } = useContext(ContextUser)
   const [sendData, setSendData] = useState(false)
   const [token, setToken] = useState('')
   const [registerOk, setRegisterOk] = useState(false)
@@ -232,6 +230,7 @@ export const FormRegisterPilot: React.FC = () => {
           const data = await res.json()
           if (res.ok) {
             setRegisterOk(true)
+            sessionStorage.setItem('token', data.access_token)
           }
           return data as JWT
         })
@@ -241,38 +240,7 @@ export const FormRegisterPilot: React.FC = () => {
       })
     }
   }, [sendData, infoPilot])
-  useEffect(() => {
-    const linkUserVerifyToken = process.env.NEXT_PUBLIC_USER_VERIFY as string
-    if (registerOk) {
-      const getInfoUserFromToken = async (): Promise<USER> => {
-        return await fetch(`${linkUserVerifyToken}`, {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'content-type': 'application/json;charset=UTF-8'
-          },
-          body: JSON.stringify({})
-        }).then(
-          async (res) => {
-            const data = await res.json()
-            return data as USER
-          }
-        )
-      }
-      void getInfoUserFromToken().then(res => {
-        sessionStorage.setItem('email', res.email)
-        sessionStorage.setItem('isLogged', 'true')
-        setInfoUser({
-          isLogged: true,
-          mail: res.email
-        })
-      })
-      if (token !== '') {
-        const rol = 'pilot'
-        redirect(`/home/${rol}`)
-      }
-    }
-  }, [registerOk, token, setInfoUser])
+  useVerify(registerOk, token)
   return (
     <form onSubmit={handleSubmit} className='w-full h-full grid m-0 [&>section]:py-2'>
       <section className='w-full flex justify-center'>
