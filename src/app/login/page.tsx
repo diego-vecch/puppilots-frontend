@@ -3,18 +3,14 @@
 import { CustomInput } from '@/components/CustomInput'
 import { LabelForm } from '../../components/LabelForm'
 import { LogoApp } from '../../components/LogoApp'
-import { useState, useEffect } from 'react'
-import { useVerify } from '@/hooks/useVerify'
-import { JWT } from '@/types/userSession'
+import { useState } from 'react'
+import { useLogin } from '@/hooks/useLogin'
 
 export default function Login (): JSX.Element {
-  const [token, setToken] = useState('')
-  const [registerOk, setRegisterOk] = useState(false)
   const [loginUser, setLoginUser] = useState({
     email: '',
     password: ''
   })
-  const [error, setError] = useState(false)
   const [sendData, setSendData] = useState(false)
   const send = (): void => {
     setSendData(true)
@@ -30,38 +26,7 @@ export default function Login (): JSX.Element {
     event.preventDefault()
   }
 
-  useEffect(() => {
-    const linkUserLogin = process.env.NEXT_PUBLIC_USER_LOGIN as string
-    if (sendData) {
-      if (loginUser.email !== '' && loginUser.password !== '') {
-        const fetchRegister = async (): Promise<JWT> => {
-          return await fetch(`${linkUserLogin}`, {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json;charset=UTF-8'
-            },
-            body: JSON.stringify({
-              email: loginUser.email,
-              password: loginUser.password
-            })
-          }).then(async (res) => {
-            const data = await res.json()
-            if (res.ok) {
-              setRegisterOk(true)
-            }
-            return data
-          })
-        }
-        void fetchRegister().then((data) => {
-          setToken(data.access_token)
-        })
-      } else {
-        setError(true)
-      }
-    }
-  }, [sendData, loginUser])
-
-  useVerify(registerOk, token)
+  const { error } = useLogin(sendData, loginUser)
 
   return (
     <div className='bg-pup-container h-screen flex justify-center place-items-center'>

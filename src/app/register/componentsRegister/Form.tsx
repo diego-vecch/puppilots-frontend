@@ -1,12 +1,10 @@
 import { LabelForm } from '@/components/LabelForm'
 import { CustomInput } from '@/components/CustomInput'
-import { useState, useEffect, useRef, useContext } from 'react'
-import { redirect } from 'next/navigation'
-import { ContextUser } from '@/context/ContextUser'
-import { USER, JWT } from '@/types/userSession'
+import { useState, useEffect, useRef } from 'react'
+import { JWT } from '@/types/userSession'
+import { useVerify } from '@/hooks/useVerify'
 
 export const Form: React.FC = () => {
-  const { setInfoUser } = useContext(ContextUser)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [verifiedPassword, setVerifiedPassword] = useState('')
@@ -115,6 +113,7 @@ export const Form: React.FC = () => {
           const data = await res.json()
           if (res.ok) {
             setRegisterOk(true)
+            sessionStorage.setItem('token', data.access_token)
           }
           return data as JWT
         })
@@ -124,40 +123,7 @@ export const Form: React.FC = () => {
       })
     }
   }, [sendData, password, email])
-
-  useEffect(() => {
-    const linkUserVerifyToken = process.env.NEXT_PUBLIC_USER_VERIFY as string
-    if (registerOk) {
-      const getInfoUserFromToken = async (): Promise<USER> => {
-        sessionStorage.setItem('isLogged', 'true')
-        return await fetch(`${linkUserVerifyToken}`, {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'content-type': 'application/json;charset=UTF-8'
-          },
-          body: JSON.stringify({})
-        }).then(
-          async (res) => {
-            const data = await res.json()
-            return data as USER
-          }
-        )
-      }
-      void getInfoUserFromToken().then(res => {
-        sessionStorage.setItem('email', res.email)
-        sessionStorage.setItem('isLogged', 'true')
-        setInfoUser({
-          isLogged: true,
-          mail: res.email
-        })
-      })
-      if (token !== '') {
-        const rol = 'client'
-        redirect(`/home/${rol}`)
-      }
-    }
-  }, [registerOk, token, setInfoUser])
+  useVerify(registerOk, token)
   return (
     <form onSubmit={handleSubmit} className='w-full h-[75%] grid items-center m-0 '>
       <section>
