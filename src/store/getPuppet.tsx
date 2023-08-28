@@ -33,7 +33,8 @@ export const usePuppetStore = create<State>((set) => ({
     set({ showAlert: show, alertMessage: message })
   },
   getPuppet: async () => {
-    const res = await fetch('https://puppilots.com/api/walk/offer', {
+    const linkGetWalk = process.env.NEXT_PUBLIC_WALK_OFFER as string
+    const res = await fetch(`${linkGetWalk}`, {
       headers: { Authorization: token }
     }).then(async (response) => {
       const puppet = await response.json()
@@ -42,8 +43,9 @@ export const usePuppetStore = create<State>((set) => ({
     return res as PuppetData[]
   },
   postWalk: async (id: string) => {
+    const linkPostWalk = process.env.NEXT_PUBLIC_WALK_POSTULATE as string
     try {
-      const res = await fetch('https://puppilots.com/api/walk/postulate', {
+      const res = await fetch(`${linkPostWalk}`, {
         method: 'POST',
         headers: {
           Authorization: token,
