@@ -13,7 +13,6 @@ export const useVerify = (registerOk: boolean, token: string): null => {
     if (registerOk) {
       void verifyTokenUser(token, linkUserVerifyToken).then(res => {
         sessionStorage.setItem('info', `${JSON.stringify(res)}`)
-        setInfoOfUser('' ?? sessionStorage.getItem('info'))
         setRol(res.role.toLowerCase())
         sessionStorage.setItem('email', res.email)
         sessionStorage.setItem('isLogged', 'true')

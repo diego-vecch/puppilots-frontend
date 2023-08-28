@@ -1,15 +1,14 @@
-
 import { create } from 'zustand'
 
 export interface PuppetData {
-  puppetname: string
+  puppetName: string
   size: string
   breed: string
   beginDate: string
   street: string
   name: string
   lastName: string
-  walksid: string
+  walkId: string
 }
 
 export interface PuppetState {
@@ -17,14 +16,25 @@ export interface PuppetState {
   puppets: PuppetData[]
   postWalk: (id: string) => Promise<any>
 }
+interface State extends PuppetState {
+  showAlert: boolean
+  alertMessage: string
+  setAlert: (show: boolean, message: string) => void
+}
 
-export const usePuppetStore = create<PuppetState>(() => ({
-  puppets: [], // Estado para almacenar las marionetas
-  filter: '', // Estado para almacenar el valor del filtro
+const token = typeof sessionStorage !== 'undefined' ? `Bearer ${sessionStorage.getItem('token') ?? ''}` : ''
 
+export const usePuppetStore = create<State>((set) => ({
+  puppets: [],
+  filter: '',
+  showAlert: false,
+  alertMessage: '',
+  setAlert: (show, message) => {
+    set({ showAlert: show, alertMessage: message })
+  },
   getPuppet: async () => {
     const res = await fetch('https://puppilots.com/api/walk/offer', {
-      headers: { Authorization: 'Bearer: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpbG90QGdtYWlsLmNvbSIsInN1YiI6IjQxMTEyNWVlLTY4NTctNDU2ZS05MDJmLTA4ZmE0ZDk3M2E4NSIsInJvbGUiOiJQSUxPVCIsImlhdCI6MTY5MzEwODcxMywiZXhwIjoxNjkzMTA5MzEzfQ.vJF04wLtBaQbFStudjOArYz4gReNFwh1mynHp_uldes' }
+      headers: { Authorization: token }
     }).then(async (response) => {
       const puppet = await response.json()
       return puppet
@@ -36,7 +46,7 @@ export const usePuppetStore = create<PuppetState>(() => ({
       const res = await fetch('https://puppilots.com/api/walk/postulate', {
         method: 'POST',
         headers: {
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBpbG90QGdtYWlsLmNvbSIsInN1YiI6IjQxMTEyNWVlLTY4NTctNDU2ZS05MDJmLTA4ZmE0ZDk3M2E4NSIsInJvbGUiOiJQSUxPVCIsImlhdCI6MTY5MzE2ODc2NiwiZXhwIjoxNjkzMTY5MzY2fQ.CKxkDBLAhiyH3hfOvJf3XbJu3ZHH3-F8oW4aknXpj-I',
+          Authorization: token,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -46,8 +56,10 @@ export const usePuppetStore = create<PuppetState>(() => ({
       if (res.ok) {
         const data = await res.json()
         console.log(data)
+        set({ showAlert: true, alertMessage: 'Postulación Exitosa' })
       } else {
         console.error('Failed to postulate walk')
+        set({ showAlert: true, alertMessage: 'Ya te has postulado' })
       }
     } catch (error) {
       console.error('Error posting walk:', error)
