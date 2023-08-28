@@ -1,4 +1,6 @@
 import { create } from 'zustand'
+import { FormValues } from '@/components/FormUp'
+import { InfoCardUser } from '@/app/home/pilot/page'
 
 export interface PuppetData {
   puppetName: string
@@ -15,6 +17,7 @@ export interface PuppetState {
   getPuppet: () => Promise<PuppetData[]>
   puppets: PuppetData[]
   postWalk: (id: string) => Promise<any>
+  putInfo: (values2: FormValues) => Promise<any>
 }
 interface State extends PuppetState {
   showAlert: boolean
@@ -62,6 +65,44 @@ export const usePuppetStore = create<State>((set) => ({
       } else {
         console.error('Failed to postulate walk')
         set({ showAlert: true, alertMessage: 'Ya te has postulado' })
+      }
+    } catch (error) {
+      console.error('Error posting walk:', error)
+    }
+  },
+
+  putInfo: async (values2: FormValues) => {
+    const linkPostWalk = process.env.NEXT_PUBLIC_PATCH_PILOT as string
+    const infoString = sessionStorage.getItem('info') ?? ''
+    const info: InfoCardUser = JSON.parse(infoString)
+
+    try {
+      const res = await fetch(`${linkPostWalk}/${info.userId}`, {
+        method: 'PATCH',
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          userId: values2.userId,
+          id: values2.id,
+          role: values2.role,
+          email: values2.email,
+          name: values2.name,
+          lastName: values2.lastName,
+          dni: values2.dni,
+          phone: values2.phone,
+          address: info.address
+        })
+      })
+      if (res.ok) {
+        const data = await res.json()
+        console.log(data)
+        set({ showAlert: true, alertMessage: 'Actualización Exitosa!!!' })
+        // sessionStorage.setItem('info', data.stringify())
+      } else {
+        console.error('Failed to postulate walk')
+        set({ showAlert: true, alertMessage: '' })
       }
     } catch (error) {
       console.error('Error posting walk:', error)
