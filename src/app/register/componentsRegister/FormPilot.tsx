@@ -72,9 +72,6 @@ export const FormRegisterPilot: React.FC = () => {
     },
     phone: {
       value: false
-    },
-    country: {
-      value: false
     }
   })
   const [place, setPlace] = useState<Places>([])
@@ -125,33 +122,31 @@ export const FormRegisterPilot: React.FC = () => {
         ...requiredError,
         name: {
           value: true
-        }
-      })
-      return
-    }
-    if (infoPilot.phone.length >= 3) {
-      setRequiredError({
-        ...requiredError,
+        },
+        lastName: {
+          value: false
+        },
         phone: {
-          value: true
+          value: false
         }
       })
       return
     }
-
-    setPartForm({
-      one: false,
-      two: true,
-      three: false,
-      four: false
-    })
-    setColorNumber(
-      {
-        ...colorNumber,
-        one: '',
-        two: 'text-violet-300'
-      }
-    )
+    if (infoPilot.name !== '' && infoPilot.phone.length >= 3) {
+      setPartForm({
+        one: false,
+        two: true,
+        three: false,
+        four: false
+      })
+      setColorNumber(
+        {
+          ...colorNumber,
+          one: '',
+          two: 'text-violet-300'
+        }
+      )
+    }
 
     if (intervalAdvance.toTwo) {
       setIntervalAdvance({
