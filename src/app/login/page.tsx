@@ -5,6 +5,7 @@ import { LabelForm } from '../../components/LabelForm'
 import { LogoApp } from '../../components/LogoApp'
 import { useState } from 'react'
 import { useLogin } from '@/hooks/useLogin'
+import { CustomButton } from '@/components/CustomButton'
 
 export default function Login (): JSX.Element {
   const [loginUser, setLoginUser] = useState({
@@ -49,7 +50,7 @@ export default function Login (): JSX.Element {
             </section>
             <section className='flex justify-center'>
               <div className='text-center pt-2 pb-4 sm:1/2 md:w-1/4'>
-                <button onClick={send} type='submit'>Enviar</button>
+                <CustomButton onClick={send} type='submit'>Enviar</CustomButton>
               </div>
             </section>
           </form>
