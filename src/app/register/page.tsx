@@ -13,7 +13,7 @@ export default function RegisterClient (): JSX.Element {
   const [viewFormClient, setViewFormClient] = useState(false)
   return (
     <div className='bg-pup-container h-screen flex justify-center place-items-center'>
-      <div className='w-11/12 lg:w-10/12 h-[580px] max-w-4xl max-h-[670px] flex border-indigo-700 border-opacity-60 rounded-2xl border-2'>
+      <div className='w-11/12 lg:w-10/12 h-[520px] max-w-4xl max-h-[670px] flex border-indigo-700 border-opacity-60 rounded-2xl border-2'>
         <div className='h-full relative rounded-l-2xl'>
           <Image className='object-cover object-top h-full w-ful rounded-l-2xl' src='/dog-forms.jpeg' alt='Imagen de un labrador. Imagen obtenida de Unplash. Autor:taylor-kopel' width={1000} height={600} />
           <div
@@ -22,10 +22,10 @@ export default function RegisterClient (): JSX.Element {
           <div className='absolute left-0 top-0 w-full pt-6 pl-4 flex justify-start z-10'><Link href='/'><ArrowReturn /></Link></div>
           <div className='absolute inset-x-0 top-4 w-full pt-4 flex justify-center'><LogoApp /></div>
         </div>
-        <div className='font-lato w-full px-2 xs:px-2 sm:px-3 md:px-5 lg:px-8 py-4 flex items-center flex-col [&>p]:flex [&>p]:flex-col [&>p]:h-full [&>p>label]:pb-1 [&>p>label]:text-pup-text_w_2 '>
+        <div className='font-lato w-full px-2 xs:px-2 sm:px-3 md:px-5 lg:px-8 py-3 flex items-center flex-col [&>p]:flex [&>p]:flex-col [&>p]:h-full [&>p>label]:pb-1 [&>p>label]:text-pup-text_w_2 '>
           <div>
             <p
-              className='text-center flex place-content-center text-xl text-pup-text_w_2 pt-3 pb-5 font-lato bold'
+              className='text-center flex place-content-center text-xl text-pup-text_w_2 pt-3 pb-4 font-lato bold'
             >
               Registro
             </p>
