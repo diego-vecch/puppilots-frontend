@@ -3,8 +3,24 @@ import Menu from '../../../components/Menu'
 import { CardUserHome } from '@/app/home/componentsHome/CardUserHome'
 import { SectionJobOffer } from '../componentsHome/SectionJobOffer'
 import { DiaryUser } from '../componentsHome/DiaryUser'
+import { Address } from '@/types/userSession'
+
+export type InfoCardUser = {
+  name: string
+  email: string
+  lastName: string
+  phone: string
+  dni: string
+  role: string
+  address: Address
+  id: string
+  userId: string
+}
 
 export default function HomePilot (): JSX.Element {
+  const infoString = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('info') ?? '' : ''
+  const info: InfoCardUser = JSON.parse(infoString)
+
   return (
     <main className='bg-pup-container h-full w-screen justify-center place-items-center overflow-hidden'>
       <div><Menu /></div>
@@ -23,8 +39,8 @@ export default function HomePilot (): JSX.Element {
           </div>
           <div className='w-3/12 px-2 pt-2'>
             <CardUserHome
-              name='Usuario 1'
-              mail='user1@gmail.com'
+              id={info.id} userId={info.userId} lastName={info.lastName}
+              name={info.name} email={info.email} dni={info.dni} phone={info.phone} role={info.role} address={info.address}
             />
           </div>
         </section>
