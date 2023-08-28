@@ -3,6 +3,7 @@ import perfil from '../../../../public/perfil.jpg'
 import { useState } from 'react'
 import { FormUp } from '@/components/FormUp'
 import { InfoCardUser } from '../pilot/page'
+import { CustomButton } from '@/components/CustomButton'
 
 interface CardUserProps extends InfoCardUser {
   name: string
@@ -28,7 +29,7 @@ export const CardUserHome: React.FC<CardUserProps> = (props) => {
   }
   return (
     <div
-      className='flex justify-center items-center w-full h-[450px] rounded-lg border-2 border-pup-blue bg-pup-card'
+      className='flex justify-center items-center w-full h-[280px] rounded-lg  bg-blue-900 bg-opacity-40'
     >
       <div className='flex flex-col items-center justify-between pb-10 w-full h-full'>
         <div className='flex justify-center flex-col items-center'>
@@ -47,22 +48,23 @@ export const CardUserHome: React.FC<CardUserProps> = (props) => {
           <span className='text-sm text-gray-500 dark:text-gray-400'>
             Correo: {email}
           </span>
-          <span className='text-sm text-gray-500 dark:text-gray-400'>
+          <span className='hidden text-sm text-gray-500 dark:text-gray-400'>
             Telefono: {phone}
           </span>
-          <span className='text-sm text-gray-500 dark:text-gray-400'>
+          <span className='hidden text-sm text-gray-500 dark:text-gray-400'>
             DNI: {dni}
           </span>
-          <span className='text-sm text-gray-500 dark:text-gray-400'>
+          <span className='hidden text-sm text-gray-500 dark:text-gray-400'>
             Role: {role}
           </span>
         </div>
-        <button
-          className='border-2 rounded-lg border-pup-blue hover:bg-pup-button_w m-3 p-2' onClick={() => {
+        <div className='w-2/3'>
+          <CustomButton onClick={() => {
             handleClick()
           }}
-        >Actualiza tu información
-        </button>
+          >Actualiza tu información
+          </CustomButton>
+        </div>
       </div>
       {
         clickAct

@@ -6,7 +6,7 @@ type InfoDiary = {
 
 export const DiaryUser: React.FC<InfoDiary> = ({ pending }) => {
   return (
-    <div className='w-full rounded-xl border-2 border-purple-300 h-[400px] px-2 font-lato'>
+    <div className='w-full rounded-xl  h-[400px] px-2 font-lato'>
       <section className='w-full my-3'><h4 className='text-center'>Agenda</h4></section>
       <section
         className='w-full mb-4 rounded-t-xl overflow-hidden'
