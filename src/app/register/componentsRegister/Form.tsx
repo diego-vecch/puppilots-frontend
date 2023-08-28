@@ -3,6 +3,7 @@ import { CustomInput } from '@/components/CustomInput'
 import { useState, useEffect, useRef } from 'react'
 import { JWT } from '@/types/userSession'
 import { useVerify } from '@/hooks/useVerify'
+import { CustomButton } from '@/components/CustomButton'
 
 export const Form: React.FC = () => {
   const [email, setEmail] = useState('')
@@ -144,7 +145,7 @@ export const Form: React.FC = () => {
       </section>
       <section className='flex items-center justify-center'>
         <div className='text-center pt-4 pb-3 sm:1/2 md:w-1/4'>
-          <button type='submit'>Enviar</button>
+          <CustomButton type='submit'>Enviar</CustomButton>
         </div>
       </section>
     </form>
