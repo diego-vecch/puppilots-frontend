@@ -18,7 +18,7 @@ export type InfoCardUser = {
 }
 
 export default function HomePilot (): JSX.Element {
-  const infoString = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('info') ?? '' : ''
+  const infoString = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('info') ?? '{}' : '{}'
   const info: InfoCardUser = JSON.parse(infoString)
 
   return (
