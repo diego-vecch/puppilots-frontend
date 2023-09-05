@@ -1,6 +1,5 @@
 'use client'
 import Menu from '../../../components/Menu'
-import { CardUserHome } from '@/app/home/componentsHome/CardUserHome'
 import { SectionCreateOffer } from '../componentsHome/SectionCreateOffer'
 import { DiaryUser } from '../componentsHome/DiaryUser'
 import { MyPuppets } from '../componentsHome/MyPuppets'
@@ -18,8 +17,6 @@ export type InfoCardUser = {
 }
 
 export default function HomePilot (): JSX.Element {
-  const infoString = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('info') ?? '{}' : '{}'
-  const info: InfoCardUser = JSON.parse(infoString)
   return (
     <main className='bg-pup-container h-full w-screen justify-center place-items-center overflow-hidden'>
       <div><Menu /></div>
@@ -35,10 +32,6 @@ export default function HomePilot (): JSX.Element {
             <div className='h-full'><SectionCreateOffer /></div>
           </div>
           <div className='w-3/12 px-2 pt-2 flex flex-col gap-4'>
-            <CardUserHome
-              id={info.id} userId={info.userId} lastName={info.lastName}
-              name={info.name} email={info.email} dni={info.dni} phone={info.phone} role={info.role} address={info.address}
-            />
             <MyPuppets />
           </div>
         </section>
