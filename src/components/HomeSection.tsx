@@ -11,7 +11,7 @@ export function HomeSection (): JSX.Element {
             Encuentra el paseo que buscas para tu perro
           </h1>
         </div>
-        <div className='py-8'><h3 className=' text-pup-text_w_3 text-2xl font-lato'>Disponible en Argentina, Chile, Colombia, Perú y Venezuela </h3>
+        <div className='py-8'><h3 className=' text-pup-text_w_3 md:text-2xl font-lato text-center [text-wrap:balance] text-xl'>Disponible en Argentina, Chile, Colombia, Perú y Venezuela </h3>
         </div>
       </div>
       <div className='px-4 pb-12'>

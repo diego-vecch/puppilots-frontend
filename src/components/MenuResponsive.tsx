@@ -40,7 +40,7 @@ export const MenuResponsive: React.FC = () => {
         </div>)}
       <div
         onClick={changeIcon}
-        className='md:hidden fixed bottom-4 right-4 z-30 w-12 xs:w-14 bg-indigo-600 bg-opacity-80 hover:bg-indigo-400 rounded-lg p-2 '
+        className='md:hidden fixed bottom-4 right-4 z-30 w-12 xs:w-14 bg-indigo-500 bg-opacity-95 hover:bg-indigo-400 rounded-lg p-2 '
       >
         {!viewMenu && (<LogoMenu />)}
         {viewMenu && (<LogoCancelMenu />)}

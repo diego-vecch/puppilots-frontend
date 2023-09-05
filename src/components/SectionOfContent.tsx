@@ -23,8 +23,8 @@ export const SectionOfContent: React.FC<AuxProps> = ({ imgFirst, src, alt, title
       {!imgFirst &&
         (
           <div className='flex w-full h-[350px]'>
-            <div className='flex flex-col w-1/2 justify-center h-full pr-10 text-base'>
-              <h1 className='text-pup-purple1 text-center font-open_san text-3xl mb-12'>
+            <div className='flex flex-col w-1/2 justify-center h-full pr-1 sm:pr-10 text-sm sm:text-base'>
+              <h1 className='text-pup-purple1 text-center font-open_san text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-12'>
                 {titleSection}
               </h1>
               <div className='text-pup-text_w_1 font-light flex h-full w-full'>✓ &nbsp;<hr /><p>{item1}</p></div>
@@ -49,7 +49,7 @@ export const SectionOfContent: React.FC<AuxProps> = ({ imgFirst, src, alt, title
               <Image className='relative h-full w-full overflow-hidden bg-fixed bg-cover bg-no-repeat object-cover rounded-2xl' src={src} alt='alt' width={400} height={300} />
             </div>
             <div className='flex flex-col w-1/2 justify-center h-full pl-10 text-base'>
-              <h1 className='text-pup-purple1 text-center font-open_san text-3xl mb-12'>
+              <h1 className='text-pup-purple1 text-center font-open_san text-xl sm:text-2xl md:text-3xl mb-12'>
                 {titleSection}
               </h1>
               <div className='text-pup-text_w_1 font-light flex h-full w-full'>✓ &nbsp;<hr /><p>{item1}</p></div>

@@ -1,24 +1,19 @@
 import { useEffect, useState } from 'react'
 import { CustomButton } from '@/components/CustomButton'
 import { CustomInput } from '@/components/CustomInput'
-
-type Puppet =
-  {
-    name: string
-    customerId: string
-    size: string
-    breed: string
-    sex: string
-    observations: string
-  }
-  type Breed = [
-    {
-      id: string
-      name: string
-    }
-  ]
+import { usePuppets } from '@/hooks/usePuppets'
+import { Puppet, Breed, ResponseMyPuppets } from '@/types/puppets'
+import { PuppetCard } from './PuppetCard'
 
 export const MyPuppets: React.FC = () => {
+  const [infoMyPuppets, setInfoMyPuppets] = useState<ResponseMyPuppets>([{
+    id: '',
+    name: '',
+    breed: '',
+    size: '',
+    sex: '',
+    observations: ''
+  }])
   const [newPuppet, setNewPuppet] = useState(false)
   const [send, setSend] = useState(false)
   const [infoPuppet, setInfoPuppet] = useState<Puppet>({
@@ -33,39 +28,47 @@ export const MyPuppets: React.FC = () => {
     id: '',
     name: ''
   }])
+  /*   const [viewInfoPuppet, setViewInfoPuppet] = useState(false) */
 
-  useEffect(() => {
-    sessionStorage.setItem('puppetId', '')
-    const linkPuppetRegister = process.env.NEXT_PUBLIC_PUPPET as string
-    if (send) {
-      const fetchRegister = async (): Promise<any> => {
-        return await fetch(`${linkPuppetRegister}`, {
-          method: 'POST',
-          headers: {
-            'content-type': 'application/json;charset=UTF-8'
-          },
-          body: JSON.stringify({
-            name: infoPuppet.name,
-            customerId: infoPuppet.customerId,
-            size: infoPuppet.size,
-            breed: infoPuppet.breed,
-            sex: infoPuppet.sex,
-            observations: infoPuppet.observations
-          })
-        }).then(async (res) => {
-          const data = await res.json()
-          if (res.ok) {
-            window.sessionStorage.setItem('puppetId', data.access_token)
-          }
-          return data
-        })
-      }
-      void fetchRegister().then((data) => { sessionStorage.setItem('puppetId', data.access_token) })
-    }
-  }, [send, infoPuppet])
   const addPuppet = (): void => {
     setNewPuppet(true)
   }
+
+  useEffect(() => {
+    const bredd = process.env.NEXT_PUBLIC_BREED as string
+    const getBreedPuppet = async (): Promise<any> => {
+      return await fetch(bredd).then(
+        async (res) => {
+          const data = await res.json()
+          setBreed(data)
+        }
+      )
+    }
+    void getBreedPuppet()
+  }, [])
+  useEffect(() => {
+    const myPuppets = process.env.NEXT_PUBLIC_PUPPET as string
+    const token = sessionStorage.getItem('token') as string
+    const infoUser = JSON.parse(sessionStorage.getItem('info') as string)
+    const id = infoUser.id as string
+    const getMyPuppets = async (): Promise<ResponseMyPuppets> => {
+      return await fetch(`${myPuppets}/by-customer-id/${id}`, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json;charset=UTF-8',
+          Authorization: `Bearer ${token}`
+        }
+      }).then(
+        async (res) => {
+          const data = await res.json()
+          setInfoMyPuppets(data)
+          return data
+        }
+      )
+    }
+    void getMyPuppets()
+  }, [])
+
   const inputChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInfoPuppet({
       ...infoPuppet,
@@ -79,28 +82,19 @@ export const MyPuppets: React.FC = () => {
       [e.target.name]: value
     })
   }
+
   const createPuppet = (): void => {
     setSend(true)
   }
-  useEffect(() => {
-    const bredd = process.env.NEXT_PUBLIC_BREED as string
-    const getBreedPuppet = async (): Promise<any> => {
-      return await fetch(bredd).then(
-        async (res) => {
-          const data = await res.json()
-          setBreed(data)
-        }
-      )
-    }
-    void getBreedPuppet()
-  }, [])
+  usePuppets(send, infoPuppet)
+
   return (
     <div
-      className='grid w-full rounded-2xl bg-indigo-900 bg-opacity-30 pt-3 px-4 pb-4'
+      className='grid w-full rounded-2xl bg-indigo-900 bg-opacity-30 pt-3 px-2 pb-4'
     >
-      <section className='flex h-10 justify-between'>
-        <div>Mis Mascotas </div>
-        <div className='w-1/2'><CustomButton onClick={addPuppet}>Agregar mascota</CustomButton></div>
+      <section className='flex h-10 justify-between px-2'>
+        <div className=''>Mis Mascotas </div>
+        <div className='w-1/3'><CustomButton onClick={addPuppet}>+ Agregar</CustomButton></div>
       </section>
       <section className=''>
         <div>
@@ -155,6 +149,24 @@ export const MyPuppets: React.FC = () => {
               </section>
             </form>)}
         </div>
+      </section>
+      <section>
+        {infoMyPuppets.map(({ id }, i) => {
+          const size = infoMyPuppets[i].size.toLowerCase()
+          const upper = size.charAt(0).toUpperCase() + size.substring(1)
+          const sex = infoMyPuppets[i].sex.toLowerCase()
+          const sexOfPuppet = sex.charAt(0).toUpperCase() + sex.substring(1)
+          return (
+            <PuppetCard
+              key={id}
+              name={infoMyPuppets[i].name}
+              breed={infoMyPuppets[i].breed}
+              size={upper}
+              sex={sexOfPuppet}
+              observations={infoMyPuppets[i].observations}
+            />
+          )
+        })}
       </section>
     </div>
   )

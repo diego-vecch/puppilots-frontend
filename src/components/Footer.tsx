@@ -8,8 +8,8 @@ export default function Footer (): JSX.Element {
       <div className=''>
         <Grid numItems={1} numItemsSm={2} numItemsMd={2} numItemsLg={4} className='px-6 gap-y-5 sm:gap-y-4  md:space-y-0 md:px-4 xl:px-0'>
           <div>
-            <LogoApp />
-            <p className='font-lato'>Encuentra el paseo que buscas para tu perro</p>
+            <div className='w-full flex justify-center'><LogoApp /></div>
+            <p className='font-lato text-center text-pup-text_w_3'>Encuentra el paseo que buscas para tu perro</p>
           </div>
           <ul className='text-center'>
             <li>
