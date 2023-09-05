@@ -30,7 +30,7 @@ module.exports = {
           blue: '#64B4F9',
           text_w_1: '#FCFCFC',
           text_w_2: '#e0e0e0',
-          text_w_3: '#A9A8A8',
+          text_w_3: '#bbbbbb',
           text_b_1: '#1E0F7B',
           text_b_2: '#180f50',
           button_w: '#8874A0',
