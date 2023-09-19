@@ -30,7 +30,7 @@ export default function Menu (): JSX.Element {
   return (
     <div className='w-full'>
       <header className='w-full flex justify-center'>
-        <nav className='text-pup-text_w_1 flex w-full justify-center md:justify-between pt-5 pb-4 md:py-3 max-w-[1400px]'>
+        <nav className='text-pup-text_w_1 flex w-full justify-center md:justify-between pt-5 pb-4 md:py-3 max-w-[1400px] px-3'>
           <div className='pl-1 md:w-full'>
             <LogoApp />
           </div>

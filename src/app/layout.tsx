@@ -15,7 +15,7 @@ export default function RootLayout ({
   children: React.ReactNode
 }): JSX.Element {
   return (
-    <html lang='es'>
+    <html lang='es' className='container_scroll'>
       <body className={`${lato.variable} font-lato text-white ${breeSerif.variable} font-bree_serif text-white ${openSans.variable} font-open_sans text-white`}>
         <ProviderInfoUser>
           <ProviderInfoOfUser>{children}
