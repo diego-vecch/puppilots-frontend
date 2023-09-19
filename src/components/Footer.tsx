@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { LogoApp } from './LogoApp'
 import { Col, Grid } from '@tremor/react'
+import { IconGitHub } from './IconsSvg'
 
 export default function Footer (): JSX.Element {
   return (
@@ -27,7 +28,17 @@ export default function Footer (): JSX.Element {
               Contacto
             </p>
           </div>
-          <div className='bold tracking-widest font-lato text-xl text-center'><p>5° Devaton</p></div>
+          <div className='tracking-widest font-lato text-xl text-center flex flex-col justify-center items-center'>
+            <p className='bold'>Repositorios</p>
+            <ul className='text-center text-base w-1/3'>
+              <li>
+                <Link href='https://github.com/diego-vecch/puppilots-frontend' className='italic text-pup-text_w_2 hover:text-pup-text_w_1 flex items-center justify-center'><div><IconGitHub /></div>Frontend</Link>
+              </li>
+              <li>
+                <Link href='https://github.com/acamus79/puppilots-backend' className='italic text-pup-text_w_2 hover:text-pup-text_w_1 flex items-center justify-center'><div><IconGitHub /></div>Backend</Link>
+              </li>
+            </ul>
+          </div>
           <Col numColSpan={1} numColSpanSm={2} numColSpanMd={2} numColSpanLg={4}>
             <div>
               <p className='text-center bold tracking-widest font-lato text-xl text-pup-text_w_2 italic'>©copyright</p>
