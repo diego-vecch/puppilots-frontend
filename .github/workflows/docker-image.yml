@@ -33,4 +33,4 @@ jobs:
         mkdir -p ~/.ssh
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
         chmod 600 ~/.ssh/id_rsa
-        ssh -o StrictHostKeyChecking=no  -p5060 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "sh ~/puppilots/run.sh"
+        ssh -o StrictHostKeyChecking=no  -p5281 ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }} "sh ~/puppilots/run.sh"
